@@ -39,6 +39,37 @@
           <span class="brand-name">DAN<span class="brand-blue">ZO</span></span>
         </a>
 
+        <div class="navbar-tools">
+          <button
+            class="icon-btn"
+            id="searchBtn"
+            aria-label="البحث عن المنتجات"
+            title="البحث"
+            data-bs-toggle="modal"
+            data-bs-target="#searchModal"
+          >
+            <i class="fa-solid fa-magnifying-glass"></i>
+          </button>
+          <button
+            class="icon-btn"
+            id="favoritesBtn"
+            aria-label="المفضلة"
+            title="المفضلة"
+          >
+            <i class="fa-regular fa-heart"></i>
+            <span class="favorite-count" id="favoriteCount">0</span>
+          </button>
+          <button
+            class="icon-btn"
+            id="cartBtn"
+            aria-label="سلة التسوق"
+            title="سلة التسوق"
+          >
+            <i class="fa-solid fa-bag-shopping"></i>
+            <span class="cart-count" id="cartCount">0</span>
+          </button>
+        </div>
+
         <button
           class="navbar-toggler bg-light"
           type="button"
@@ -71,44 +102,82 @@
             </li>
           </ul>
 
-          <div class="nav-actions">
-            <button
-              class="icon-btn"
-              id="searchBtn"
-              aria-label="البحث"
-              title="البحث"
-            >
-              <i class="fa-solid fa-magnifying-glass"></i>
-            </button>
-
-            <!-- زر صفحة المفضلة -->
-            <button
-              class="icon-btn"
-              id="favoritesBtn"
-              aria-label="المفضلة"
-              title="المفضلة"
-            >
-              <i class="fa-regular fa-heart"></i>
-              <span class="favorite-count" id="favoriteCount">0</span>
-            </button>
-
-            <button
-              class="icon-btn"
-              id="cartBtn"
-              aria-label="سلة التسوق"
-              title="سلة التسوق"
-            >
-              <i class="fa-solid fa-bag-shopping"></i>
-              <span class="cart-count" id="cartCount">0</span>
-            </button>
-
-            <a href="#products" class="gold-btn"
-              >تسوق الآن <i class="fa-solid fa-arrow-left"></i
-            ></a>
-          </div>
+          <a href="#products" class="gold-btn nav-shop-action"
+            >تسوق الآن <i class="fa-solid fa-arrow-left"></i
+          ></a>
         </div>
       </div>
     </nav>
+
+    <!-- SEARCH -->
+    <div
+      class="modal fade search-modal"
+      id="searchModal"
+      tabindex="-1"
+      aria-labelledby="searchModalTitle"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <div>
+              <span class="search-modal-kicker">DANZO COLLECTION</span>
+              <h5 class="modal-title" id="searchModalTitle">ابحث عن منتجك</h5>
+            </div>
+            <button
+              type="button"
+              class="search-close"
+              data-bs-dismiss="modal"
+              aria-label="إغلاق البحث"
+            >
+              <i class="fa-solid fa-xmark" aria-hidden="true"></i>
+            </button>
+          </div>
+          <form id="searchForm">
+            <div class="modal-body">
+              <label for="productSearchInput" class="search-label"
+                >اسم المنتج أو القسم</label
+              >
+              <div class="search-input-wrap">
+                <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
+                <input
+                  type="search"
+                  id="productSearchInput"
+                  class="form-control"
+                  placeholder="مثال: سنيكرز، شنطة..."
+                  autocomplete="off"
+                  aria-describedby="searchHint"
+                />
+                <button
+                  type="button"
+                  id="clearSearch"
+                  class="search-clear"
+                  aria-label="مسح البحث"
+                  hidden
+                >
+                  <i class="fa-solid fa-xmark" aria-hidden="true"></i>
+                </button>
+              </div>
+              <p class="search-hint" id="searchHint">
+                ابحث بالاسم أو نوع المنتج للوصول لاختيارك بسرعة.
+              </p>
+            </div>
+            <div class="modal-footer">
+              <button
+                type="button"
+                class="search-cancel"
+                data-bs-dismiss="modal"
+              >
+                إلغاء
+              </button>
+              <button type="submit" class="search-submit">
+                <i class="fa-solid fa-magnifying-glass"></i> عرض النتائج
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
 
     <!-- HERO -->
     <section class="hero" id="home">
@@ -217,6 +286,16 @@
           <p class="section-subtitle">
             كل اللي تحتاجه لإطلالة متكاملة في مكان واحد.
           </p>
+          <button
+            type="button"
+            class="categories-list-toggle"
+            id="categoriesListToggle"
+            aria-controls="categoriesGrid"
+            aria-expanded="true"
+          >
+            <i class="fa-solid fa-chevron-up" aria-hidden="true"></i>
+            إخفاء الأقسام
+          </button>
         </div>
         <div class="row g-4" id="categoriesGrid"></div>
       </div>
@@ -236,12 +315,40 @@
         </div>
         <div class="product-filters" id="productFilters"></div>
         <div class="products-toolbar">
-          <label for="productsPerPage">عدد المنتجات في الصفحة:</label>
-          <select id="productsPerPage" class="products-page-size">
-            <option value="8" selected>8</option>
-            <option value="16">16</option>
-            <option value="32">32</option>
-          </select>
+          <div class="products-toolbar-control">
+            <label for="productsPerPage">عدد المنتجات:</label>
+            <select id="productsPerPage" class="products-page-size">
+              <option value="8" selected>8</option>
+              <option value="16">16</option>
+              <option value="32">32</option>
+            </select>
+          </div>
+          <div class="products-mobile-filter">
+            <div class="mobile-category-filter-control" id="mobileCategoryFilterControl">
+              <i class="fa-solid fa-filter" aria-hidden="true"></i>
+              <button
+                type="button"
+                id="mobileCategoryFilterButton"
+                class="mobile-category-filter-button"
+                aria-haspopup="listbox"
+                aria-controls="mobileCategoryFilterMenu"
+                aria-expanded="false"
+              >
+                <span id="mobileCategoryFilterLabel">كل المنتجات</span>
+              </button>
+              <i
+                class="fa-solid fa-chevron-down mobile-filter-chevron"
+                aria-hidden="true"
+              ></i>
+              <div
+                id="mobileCategoryFilterMenu"
+                class="mobile-category-filter-menu"
+                role="listbox"
+                aria-label="أقسام المنتجات"
+                hidden
+              ></div>
+            </div>
+          </div>
           <span id="productsCount" class="products-count" aria-live="polite"></span>
         </div>
         <div class="row g-4" id="productsGrid"></div>

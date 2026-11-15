@@ -472,6 +472,19 @@ function renderCategories() {
     .join("");
 }
 
+document
+  .getElementById("categoriesListToggle")
+  .addEventListener("click", (event) => {
+    const button = event.currentTarget;
+    const categoryList = document.getElementById("categoriesGrid");
+    const expanded = button.getAttribute("aria-expanded") === "true";
+    categoryList.hidden = expanded;
+    button.setAttribute("aria-expanded", String(!expanded));
+    button.innerHTML = expanded
+      ? '<i class="fa-solid fa-chevron-down" aria-hidden="true"></i> إظهار الأقسام'
+      : '<i class="fa-solid fa-chevron-up" aria-hidden="true"></i> إخفاء الأقسام';
+  });
+
 /* رسم أزرار الفلترة */
 function renderFilters() {
   const all = [{ id: "all", name: "كل المنتجات" }, ...categories];
@@ -484,7 +497,104 @@ function renderFilters() {
     `,
     )
     .join("");
+
+  const mobileFilterMenu = document.getElementById("mobileCategoryFilterMenu");
+  mobileFilterMenu.innerHTML = all
+    .map(
+      (category) =>
+        `<button type="button" class="mobile-category-option" role="option" aria-selected="${category.id === activeCategory}" data-mobile-filter="${escapeHTML(category.id)}">
+          <span>${escapeHTML(category.name)}</span>
+          <i class="fa-solid fa-check" aria-hidden="true"></i>
+        </button>`,
+    )
+    .join("");
+  const selectedCategory = all.find(
+    (category) => category.id === activeCategory,
+  );
+  document.getElementById("mobileCategoryFilterLabel").textContent =
+    selectedCategory ? selectedCategory.name : all[0].name;
 }
+
+const mobileCategoryFilterControl = document.getElementById(
+  "mobileCategoryFilterControl",
+);
+const mobileCategoryFilterButton = document.getElementById(
+  "mobileCategoryFilterButton",
+);
+const mobileCategoryFilterMenu = document.getElementById(
+  "mobileCategoryFilterMenu",
+);
+
+function setMobileCategoryFilterOpen(open, focusSelected = false) {
+  mobileCategoryFilterMenu.hidden = !open;
+  mobileCategoryFilterButton.setAttribute("aria-expanded", String(open));
+  document
+    .querySelector(".mobile-filter-chevron")
+    .classList.toggle("fa-chevron-up", open);
+  document
+    .querySelector(".mobile-filter-chevron")
+    .classList.toggle("fa-chevron-down", !open);
+  if (open && focusSelected) {
+    mobileCategoryFilterMenu
+      .querySelector('[aria-selected="true"]')
+      .focus();
+  }
+}
+
+document
+  .getElementById("mobileCategoryFilterButton")
+  .addEventListener("click", () => {
+    const isOpen =
+      mobileCategoryFilterButton.getAttribute("aria-expanded") === "true";
+    setMobileCategoryFilterOpen(!isOpen, !isOpen);
+  });
+
+mobileCategoryFilterButton.addEventListener("keydown", (event) => {
+  if (event.key === "ArrowDown" || event.key === "ArrowUp") {
+    event.preventDefault();
+    setMobileCategoryFilterOpen(true, true);
+  }
+});
+
+mobileCategoryFilterMenu.addEventListener("click", (event) => {
+  const option = event.target.closest("[data-mobile-filter]");
+  if (!option) return;
+  activeCategory = option.dataset.mobileFilter;
+  searchTerm = "";
+  currentProductPage = 1;
+  renderFilters();
+  renderProducts();
+  setMobileCategoryFilterOpen(false);
+  mobileCategoryFilterButton.focus();
+});
+
+mobileCategoryFilterMenu.addEventListener("keydown", (event) => {
+  const options = [...mobileCategoryFilterMenu.querySelectorAll("[role='option']")];
+  const currentIndex = options.indexOf(document.activeElement);
+  let nextIndex = currentIndex;
+
+  if (event.key === "Escape") {
+    event.preventDefault();
+    setMobileCategoryFilterOpen(false);
+    mobileCategoryFilterButton.focus();
+    return;
+  }
+  if (event.key === "ArrowDown") nextIndex = (currentIndex + 1) % options.length;
+  else if (event.key === "ArrowUp")
+    nextIndex = (currentIndex - 1 + options.length) % options.length;
+  else if (event.key === "Home") nextIndex = 0;
+  else if (event.key === "End") nextIndex = options.length - 1;
+  else return;
+
+  event.preventDefault();
+  options[nextIndex].focus();
+});
+
+document.addEventListener("click", (event) => {
+  if (!mobileCategoryFilterControl.contains(event.target)) {
+    setMobileCategoryFilterOpen(false);
+  }
+});
 
 /* بطاقة المنتج */
 function productCard(product, options = {}) {
@@ -728,22 +838,53 @@ document.addEventListener("click", (event) => {
 });
 
 /* البحث */
-document.getElementById("searchBtn").addEventListener("click", () => {
-  showShop();
-  const term = prompt("اكتب اسم المنتج أو القسم الذي تبحث عنه:");
-  if (term === null) return;
-  searchTerm = term.trim().toLowerCase();
+const searchModalElement = document.getElementById("searchModal");
+const searchModal = bootstrap.Modal.getOrCreateInstance(searchModalElement);
+const productSearchInput = document.getElementById("productSearchInput");
+const clearSearchButton = document.getElementById("clearSearch");
+
+searchModalElement.addEventListener("shown.bs.modal", () => {
+  productSearchInput.focus();
+});
+productSearchInput.addEventListener("input", () => {
+  clearSearchButton.hidden = !productSearchInput.value;
+});
+clearSearchButton.addEventListener("click", () => {
+  productSearchInput.value = "";
+  clearSearchButton.hidden = true;
+  productSearchInput.focus();
+});
+
+document.getElementById("searchForm").addEventListener("submit", (event) => {
+  event.preventDefault();
+  searchTerm = productSearchInput.value.trim().toLowerCase();
   activeCategory = "all";
   currentProductPage = 1;
+  showShop({ scrollToTop: false });
+  renderFilters();
   renderProducts();
-  document.getElementById("products").scrollIntoView({ behavior: "smooth" });
+
+  searchModalElement.addEventListener(
+    "hidden.bs.modal",
+    () =>
+      document
+        .getElementById("products")
+        .scrollIntoView({ behavior: "smooth", block: "start" }),
+    { once: true },
+  );
+  searchModal.hide();
+
   const count = products.filter((product) =>
     (product.name + " " + product.categoryName + " " + product.description)
       .toLowerCase()
       .includes(searchTerm),
   ).length;
   showToast(
-    count ? `عدد المنتجات المطابقة: ${count}` : "مفيش منتجات مطابقة للبحث",
+    searchTerm
+      ? count
+        ? `عدد المنتجات المطابقة: ${count}`
+        : "لم يتم العثور على منتجات مطابقة"
+      : "يتم عرض كل المنتجات",
   );
 });
 
