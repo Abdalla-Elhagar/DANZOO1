@@ -1459,6 +1459,10 @@
       @media (max-width: 991px) {
         .cart-layout {
           grid-template-columns: 1fr;
+          gap: 14px;
+        }
+        .cart-panel {
+          padding: 16px;
         }
         #cartItems {
           max-height: none;
@@ -1626,19 +1630,78 @@
           width: 100%;
         }
         .cart-modal .modal-body {
-          padding: 14px;
+          padding: 12px;
+        }
+        .cart-modal .modal-dialog {
+          width: calc(100% - 16px);
+          margin: 8px auto;
+        }
+        .cart-modal .modal-header {
+          min-height: 66px;
+          padding: 13px 15px;
+        }
+        .cart-modal .modal-title {
+          padding-left: 42px;
+          font-size: 16px;
+        }
+        .cart-modal-title-group p {
+          max-width: 260px;
+          padding-left: 42px;
+          font-size: 10px;
+          line-height: 1.6;
+        }
+        .cart-modal .cart-close {
+          left: 12px;
+          width: 34px;
+          height: 34px;
+        }
+        .cart-modal .modal-footer {
+          padding: 12px 15px;
+        }
+        .cart-modal .modal-footer .outline-btn {
+          width: 100%;
+          min-height: 44px;
+        }
+        .cart-layout {
+          gap: 12px;
+        }
+        .cart-panel {
+          padding: 13px;
+          border-radius: 13px;
+        }
+        .cart-section-heading {
+          margin-bottom: 12px;
         }
         .cart-item-image {
-          width: 55px;
-          height: 55px;
-          flex-basis: 55px;
+          width: 60px;
+          height: 60px;
+          flex-basis: 60px;
         }
         .cart-item {
-          gap: 10px;
-          padding: 10px;
+          gap: 9px;
+          padding: 9px;
+          border-radius: 11px;
+        }
+        .cart-item-info h6 {
+          overflow-wrap: anywhere;
+          font-size: 12px;
+        }
+        .cart-item-meta {
+          gap: 5px;
+        }
+        .cart-item-variant {
+          padding: 3px 6px;
+          font-size: 9px;
         }
         .cart-item-footer {
           align-items: flex-start;
+          gap: 8px;
+        }
+        .cart-total-row {
+          padding: 12px;
+        }
+        .cart-total-value {
+          font-size: 16px;
         }
         .cart-item-price {
           font-size: 13px;
