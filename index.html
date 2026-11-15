@@ -235,7 +235,21 @@
           </p>
         </div>
         <div class="product-filters" id="productFilters"></div>
+        <div class="products-toolbar">
+          <label for="productsPerPage">عدد المنتجات في الصفحة:</label>
+          <select id="productsPerPage" class="products-page-size">
+            <option value="8" selected>8</option>
+            <option value="16">16</option>
+            <option value="32">32</option>
+          </select>
+          <span id="productsCount" class="products-count" aria-live="polite"></span>
+        </div>
         <div class="row g-4" id="productsGrid"></div>
+        <nav
+          id="productsPagination"
+          class="products-pagination"
+          aria-label="صفحات المنتجات"
+        ></nav>
         <div
           id="noProducts"
           class="text-center py-5"
@@ -370,22 +384,23 @@
       style="display: none"
     >
       <div class="container">
-        <div class="text-center">
-          <span class="section-tag">YOUR FAVORITES</span>
-          <h2 class="section-title">
-            قائمة <span style="color: #ff5570">المفضلة</span>
-            <i class="fa-solid fa-heart" style="color: #ff5570"></i>
-          </h2>
-          <p class="section-subtitle">كل المنتجات اللي عجبتك هتلاقيها هنا.</p>
+        <div class="favorites-heading">
+          <div class="favorites-heading-copy">
+            <span class="favorites-kicker">
+              <i class="fa-solid fa-heart"></i> YOUR FAVORITES
+            </span>
+            <h2>اختياراتك <span>المفضلة</span></h2>
+            <p>كل المنتجات اللي عجبتك محفوظة هنا، وجاهزة تكتشفها من جديد.</p>
+          </div>
+          <div class="favorites-heading-art" aria-hidden="true">
+            <i class="fa-solid fa-heart"></i>
+          </div>
         </div>
         <div class="favorites-toolbar">
           <button class="outline-btn" id="backToShop">
             <i class="fa-solid fa-arrow-right"></i> الرجوع للتسوق
           </button>
-          <span
-            id="favoritesSummary"
-            style="color: var(--gray); font-size: 13px"
-          ></span>
+          <span id="favoritesSummary" class="favorites-summary"></span>
         </div>
         <div class="row g-4" id="favoritesGrid"></div>
         <div id="favoritesEmpty" class="favorites-empty" style="display: none">
@@ -594,20 +609,25 @@
       aria-hidden="true"
     >
       <div
-        class="modal-dialog modal-dialog-centered modal-lg modal-dialog-scrollable"
+        class="modal-dialog modal-dialog-centered modal-xl modal-dialog-scrollable"
       >
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title fw-bold" id="cartModalTitle">
-              <i class="fa-solid fa-bag-shopping gold-text ms-2"></i> سلة
-              مشتريات DANZO
-            </h5>
+            <div class="cart-modal-title-group">
+              <h5 class="modal-title fw-bold" id="cartModalTitle">
+                <i class="fa-solid fa-bag-shopping gold-text ms-2"></i> سلة
+                مشتريات DANZO
+              </h5>
+              <p>راجع اختياراتك وأكمل بيانات التوصيل لإتمام طلبك.</p>
+            </div>
             <button
               type="button"
-              class="btn-close"
+              class="cart-close"
               data-bs-dismiss="modal"
               aria-label="إغلاق"
-            ></button>
+            >
+              <i class="fa-solid fa-xmark" aria-hidden="true"></i>
+            </button>
           </div>
           <div class="modal-body">
             <div id="cartEmpty" class="cart-empty">
@@ -623,83 +643,135 @@
               </button>
             </div>
             <div id="cartContent" style="display: none">
-              <div id="cartItems"></div>
-              <div class="cart-total-row">
-                <span>إجمالي الطلب</span
-                ><span class="cart-total-value" id="cartTotal">0 ج.م</span>
+              <div class="cart-layout">
+                <section
+                  class="cart-panel cart-items-panel"
+                  aria-labelledby="cartItemsTitle"
+                >
+                  <div class="cart-section-heading">
+                    <div>
+                      <span class="cart-panel-kicker">YOUR BAG</span>
+                      <h6 id="cartItemsTitle">منتجاتك</h6>
+                    </div>
+                    <span class="cart-items-count" aria-live="polite">
+                      <strong id="cartModalCount">0</strong> عنصر
+                    </span>
+                  </div>
+                  <div id="cartItems"></div>
+                  <div class="cart-total-row">
+                    <span>
+                      <strong>إجمالي الطلب</strong>
+                      <small>لا يشمل رسوم التوصيل</small>
+                    </span>
+                    <span class="cart-total-value" id="cartTotal">0 ج.م</span>
+                  </div>
+                  <p class="order-note">
+                    يتم تأكيد أي رسوم توصيل إضافية مع المتجر.
+                  </p>
+                </section>
+                <section
+                  class="cart-panel cart-checkout-panel"
+                  aria-labelledby="checkoutTitle"
+                >
+                  <div class="cart-section-heading checkout-section-heading">
+                    <div>
+                      <span class="cart-panel-kicker">DELIVERY DETAILS</span>
+                      <h6 id="checkoutTitle">بيانات العميل</h6>
+                    </div>
+                    <i class="fa-regular fa-user" aria-hidden="true"></i>
+                  </div>
+                  <form id="checkoutForm" novalidate>
+                    <div
+                      class="checkout-alert"
+                      id="checkoutError"
+                      role="alert"
+                      aria-live="assertive"
+                      hidden
+                    ></div>
+                    <div class="row g-3">
+                      <div class="col-12 col-xl-6">
+                        <label for="customerName" class="form-label"
+                          >الاسم بالكامل *</label
+                        ><input
+                          type="text"
+                          id="customerName"
+                          class="form-control"
+                          placeholder="اكتب اسمك"
+                          required
+                          maxlength="100"
+                          autocomplete="name"
+                          aria-describedby="customerNameError"
+                        />
+                        <div
+                          class="invalid-feedback"
+                          id="customerNameError"
+                        ></div>
+                      </div>
+                      <div class="col-12 col-xl-6">
+                        <label for="customerPhone" class="form-label"
+                          >رقم هاتفك *</label
+                        ><input
+                          type="tel"
+                          id="customerPhone"
+                          class="form-control"
+                          placeholder="01xxxxxxxxx"
+                          required
+                          maxlength="20"
+                          inputmode="tel"
+                          autocomplete="tel"
+                          aria-describedby="customerPhoneError"
+                        />
+                        <div
+                          class="invalid-feedback"
+                          id="customerPhoneError"
+                        ></div>
+                      </div>
+                      <div class="col-12">
+                        <label for="customerAddress" class="form-label"
+                          >العنوان بالتفصيل *</label
+                        ><input
+                          type="text"
+                          id="customerAddress"
+                          class="form-control"
+                          placeholder="المحافظة، المدينة، الشارع، رقم العقار"
+                          required
+                          maxlength="300"
+                          autocomplete="street-address"
+                          aria-describedby="customerAddressError"
+                        />
+                        <div
+                          class="invalid-feedback"
+                          id="customerAddressError"
+                        ></div>
+                      </div>
+                      <div class="col-12">
+                        <label for="customerNotes" class="form-label"
+                          >ملاحظات إضافية (اختياري)</label
+                        ><textarea
+                          id="customerNotes"
+                          class="form-control"
+                          rows="3"
+                          maxlength="1000"
+                          placeholder="المقاس المطلوب أو اللون أو أي ملاحظات..."
+                        ></textarea>
+                      </div>
+                    </div>
+                    <button type="submit" class="whatsapp-order-btn mt-4">
+                      <i class="fa-brands fa-whatsapp fa-lg"></i> اطلب الآن عبر
+                      واتساب
+                    </button>
+                    <p class="order-note">
+                      هتتفتح رسالة جاهزة بتفاصيل طلبك. اضغط إرسال داخل واتساب
+                      لإتمام إرسال الطلب.
+                    </p>
+                  </form>
+                </section>
               </div>
-              <p class="order-note">
-                الإجمالي محسوب حسب أسعار المنتجات المعروضة. يتم تأكيد أي رسوم
-                توصيل إضافية مع المتجر.
-              </p>
-              <hr style="border-color: var(--border); margin-top: 25px" />
-              <h6 class="checkout-title">
-                <i class="fa-regular fa-user gold-text ms-2"></i> بيانات العميل
-              </h6>
-              <form id="checkoutForm">
-                <div class="row g-3">
-                  <div class="col-md-6">
-                    <label for="customerName" class="form-label"
-                      >الاسم بالكامل *</label
-                    ><input
-                      type="text"
-                      id="customerName"
-                      class="form-control"
-                      placeholder="اكتب اسمك"
-                      required
-                      maxlength="100"
-                    />
-                  </div>
-                  <div class="col-md-6">
-                    <label for="customerPhone" class="form-label"
-                      >رقم هاتفك *</label
-                    ><input
-                      type="tel"
-                      id="customerPhone"
-                      class="form-control"
-                      placeholder="01xxxxxxxxx"
-                      required
-                      maxlength="20"
-                    />
-                  </div>
-                  <div class="col-12">
-                    <label for="customerAddress" class="form-label"
-                      >العنوان بالتفصيل *</label
-                    ><input
-                      type="text"
-                      id="customerAddress"
-                      class="form-control"
-                      placeholder="المحافظة، المدينة، الشارع، رقم العقار"
-                      required
-                      maxlength="300"
-                    />
-                  </div>
-                  <div class="col-12">
-                    <label for="customerNotes" class="form-label"
-                      >ملاحظات إضافية (اختياري)</label
-                    ><textarea
-                      id="customerNotes"
-                      class="form-control"
-                      rows="3"
-                      maxlength="1000"
-                      placeholder="المقاس المطلوب أو اللون أو أي ملاحظات..."
-                    ></textarea>
-                  </div>
-                </div>
-                <button type="submit" class="whatsapp-order-btn mt-4">
-                  <i class="fa-brands fa-whatsapp fa-lg"></i> اطلب الآن عبر
-                  واتساب
-                </button>
-                <p class="order-note">
-                  هتتفتح رسالة جاهزة بتفاصيل طلبك. اضغط إرسال داخل واتساب لإتمام
-                  إرسال الطلب.
-                </p>
-              </form>
             </div>
           </div>
           <div class="modal-footer">
             <button type="button" class="outline-btn" data-bs-dismiss="modal">
-              متابعة التسوق
+              <i class="fa-solid fa-arrow-right"></i> متابعة التسوق
             </button>
           </div>
         </div>
