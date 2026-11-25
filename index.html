@@ -1,899 +1,655 @@
 <!doctype html>
 <html lang="ar" dir="rtl">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>DANZO | Your Style Your Rules</title>
 
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.rtl.min.css"
-      rel="stylesheet"
-    />
-    <link
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
-      rel="stylesheet"
-    />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&display=swap"
-      rel="stylesheet"
-    />
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>DANZO | Your Style Your Rules</title>
 
-    <link rel="stylesheet" href="css/style.css" />
-  </head>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.rtl.min.css" rel="stylesheet" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&display=swap"
+    rel="stylesheet" />
 
-  <body>
-    <!-- NAVBAR -->
-    <nav class="navbar navbar-expand-lg fixed-top">
-      <div class="container">
-        <a
-          class="navbar-brand d-flex align-items-center gap-2"
-          href="#home"
-          id="brandHome"
-        >
-          <img
-            src="img/2 (2).jpeg"
-            alt="DANZO Logo"
-            class="brand-logo"
-            onerror="this.style.display = 'none'"
-          />
-          <span class="brand-name">DAN<span class="brand-blue">ZO</span></span>
-        </a>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
 
-        <div class="navbar-tools">
-          <button
-            class="icon-btn"
-            id="searchBtn"
-            aria-label="البحث عن المنتجات"
-            title="البحث"
-            data-bs-toggle="modal"
-            data-bs-target="#searchModal"
-          >
-            <i class="fa-solid fa-magnifying-glass"></i>
-          </button>
-          <button
-            class="icon-btn"
-            id="favoritesBtn"
-            aria-label="المفضلة"
-            title="المفضلة"
-          >
-            <i class="fa-regular fa-heart"></i>
-            <span class="favorite-count" id="favoriteCount">0</span>
-          </button>
-          <button
-            class="icon-btn"
-            id="cartBtn"
-            aria-label="سلة التسوق"
-            title="سلة التسوق"
-          >
-            <i class="fa-solid fa-bag-shopping"></i>
-            <span class="cart-count" id="cartCount">0</span>
-          </button>
-        </div>
+<body>
+  <!-- NAVBAR -->
+  <nav class="navbar navbar-expand-lg fixed-top">
+    <div class="container">
+      <a class="navbar-brand d-flex align-items-center gap-2" href="#home" id="brandHome">
+        <img src="img/2 (2).jpeg" alt="DANZO Logo" class="brand-logo" onerror="this.style.display = 'none'" />
+        <span class="brand-name">DAN<span class="brand-blue">ZO</span></span>
+      </a>
 
-        <button
-          class="navbar-toggler bg-light"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#mainNavbar"
-          aria-label="فتح القائمة"
-        >
-          <span class="navbar-toggler-icon"></span>
+      <div class="navbar-tools">
+        <button class="icon-btn" id="searchBtn" aria-label="البحث عن المنتجات" title="البحث" data-bs-toggle="modal"
+          data-bs-target="#searchModal">
+          <i class="fa-solid fa-magnifying-glass"></i>
         </button>
-
-        <div class="collapse navbar-collapse" id="mainNavbar">
-          <ul class="navbar-nav mx-auto">
-            <li class="nav-item">
-              <a class="nav-link active" href="#home">الرئيسية</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#categories">الأقسام</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#products">منتجاتنا</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#offers">العروض</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#about">عن DANZO</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#contact">تواصل معنا</a>
-            </li>
-          </ul>
-
-          <a href="#products" class="gold-btn nav-shop-action"
-            >تسوق الآن <i class="fa-solid fa-arrow-left"></i
-          ></a>
-        </div>
+        <button class="icon-btn" id="favoritesBtn" aria-label="المفضلة" title="المفضلة">
+          <i class="fa-regular fa-heart"></i>
+          <span class="favorite-count" id="favoriteCount">0</span>
+        </button>
+        <button class="icon-btn" id="cartBtn" aria-label="سلة التسوق" title="سلة التسوق">
+          <i class="fa-solid fa-bag-shopping"></i>
+          <span class="cart-count" id="cartCount">0</span>
+        </button>
       </div>
-    </nav>
 
-    <!-- SEARCH -->
-    <div
-      class="modal fade search-modal"
-      id="searchModal"
-      tabindex="-1"
-      aria-labelledby="searchModalTitle"
-      aria-hidden="true"
-    >
-      <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-          <div class="modal-header">
-            <div>
-              <span class="search-modal-kicker">DANZO COLLECTION</span>
-              <h5 class="modal-title" id="searchModalTitle">ابحث عن منتجك</h5>
+      <button class="navbar-toggler bg-light" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar"
+        aria-label="فتح القائمة">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="mainNavbar">
+        <ul class="navbar-nav mx-auto">
+          <li class="nav-item">
+            <a class="nav-link active" href="#home">الرئيسية</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#categories">الأقسام</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#products">منتجاتنا</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#offers">العروض</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#about">عن DANZO</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#contact">تواصل معنا</a>
+          </li>
+        </ul>
+
+        <a href="#products" class="gold-btn nav-shop-action">تسوق الآن <i class="fa-solid fa-arrow-left"></i></a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- SEARCH -->
+  <div class="modal fade search-modal" id="searchModal" tabindex="-1" aria-labelledby="searchModalTitle"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <div>
+            <span class="search-modal-kicker">DANZO COLLECTION</span>
+            <h5 class="modal-title" id="searchModalTitle">ابحث عن منتجك</h5>
+          </div>
+          <button type="button" class="search-close" data-bs-dismiss="modal" aria-label="إغلاق البحث">
+            <i class="fa-solid fa-xmark" aria-hidden="true"></i>
+          </button>
+        </div>
+        <form id="searchForm">
+          <div class="modal-body">
+            <label for="productSearchInput" class="search-label">اسم المنتج أو القسم</label>
+            <div class="search-input-wrap">
+              <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
+              <input type="search" id="productSearchInput" class="form-control" placeholder="مثال: سنيكرز، شنطة..."
+                autocomplete="off" aria-describedby="searchHint" />
+              <button type="button" id="clearSearch" class="search-clear" aria-label="مسح البحث" hidden>
+                <i class="fa-solid fa-xmark" aria-hidden="true"></i>
+              </button>
             </div>
-            <button
-              type="button"
-              class="search-close"
-              data-bs-dismiss="modal"
-              aria-label="إغلاق البحث"
-            >
-              <i class="fa-solid fa-xmark" aria-hidden="true"></i>
+            <p class="search-hint" id="searchHint">
+              ابحث بالاسم أو نوع المنتج للوصول لاختيارك بسرعة.
+            </p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="search-cancel" data-bs-dismiss="modal">
+              إلغاء
+            </button>
+            <button type="submit" class="search-submit">
+              <i class="fa-solid fa-magnifying-glass"></i> عرض النتائج
             </button>
           </div>
-          <form id="searchForm">
-            <div class="modal-body">
-              <label for="productSearchInput" class="search-label"
-                >اسم المنتج أو القسم</label
-              >
-              <div class="search-input-wrap">
-                <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
-                <input
-                  type="search"
-                  id="productSearchInput"
-                  class="form-control"
-                  placeholder="مثال: سنيكرز، شنطة..."
-                  autocomplete="off"
-                  aria-describedby="searchHint"
-                />
-                <button
-                  type="button"
-                  id="clearSearch"
-                  class="search-clear"
-                  aria-label="مسح البحث"
-                  hidden
-                >
-                  <i class="fa-solid fa-xmark" aria-hidden="true"></i>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- HERO -->
+  <section class="hero" id="home">
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-lg-6">
+          <div class="hero-content">
+            <div class="hero-badge"><span></span> أسلوبك يبدأ من اختيارك</div>
+            <h1>مش مجرد شوز...<span class="highlight">دي هويتك.</span></h1>
+            <p class="hero-description">
+              اكتشف عالم DANZO، حيث الأناقة بتقابل التميز. من السنيكرز والجزم
+              الكلاسيك إلى الميرور والهاي كوبي والشربات، اختار الستايل اللي
+              يعبر عنك.
+            </p>
+            <div class="hero-buttons">
+              <a href="#products" class="gold-btn">اكتشف مجموعتنا <i class="fa-solid fa-arrow-left"></i></a>
+              <a href="#categories" class="outline-btn">استكشف الأقسام <i class="fa-solid fa-layer-group"></i></a>
+            </div>
+            <div class="hero-stats">
+              <div>
+                <div class="stat-number">01.</div>
+                <div class="stat-label">ستايل يميزك</div>
+              </div>
+              <div>
+                <div class="stat-number">02.</div>
+                <div class="stat-label">اختيارات متنوعة</div>
+              </div>
+              <div>
+                <div class="stat-number">03.</div>
+                <div class="stat-label">إطلالة متكاملة</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <div class="hero-visual">
+            <div class="hero-circle"><span class="orbit-dot"></span></div>
+            <img class="hero-shoe" src="img/4.jpg" alt="حذاء DANZO" onerror="
+                  this.onerror = null;
+                  this.src =
+                    'https://placehold.co/600x500/101827/72b4ff?text=DANZO';
+                " />
+            <div class="floating-label label-one">
+              <small>YOUR STYLE</small><strong>BE DIFFERENT.</strong>
+            </div>
+            <div class="floating-label label-two">
+              <small>اختار إطلالتك</small><strong><i class="fa-solid fa-star gold-text"></i> DANZO
+                COLLECTION</strong>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TICKER -->
+  <div class="ticker">
+    <div class="ticker-track">
+      <div class="ticker-item">
+        DANZO <i class="fa-solid fa-star"></i> YOUR STYLE YOUR RULES
+      </div>
+      <div class="ticker-item">
+        سنيكرز <i class="fa-solid fa-star"></i> جزم كلاسيك
+      </div>
+      <div class="ticker-item">
+        الميرور <i class="fa-solid fa-star"></i> الهاي كوبي
+      </div>
+      <div class="ticker-item">
+        الشربات <i class="fa-solid fa-star"></i> إكسسوارات
+      </div>
+      <div class="ticker-item">
+        DANZO <i class="fa-solid fa-star"></i> YOUR STYLE YOUR RULES
+      </div>
+      <div class="ticker-item">
+        سنيكرز <i class="fa-solid fa-star"></i> جزم كلاسيك
+      </div>
+      <div class="ticker-item">
+        الميرور <i class="fa-solid fa-star"></i> الهاي كوبي
+      </div>
+      <div class="ticker-item">
+        الشربات <i class="fa-solid fa-star"></i> إكسسوارات
+      </div>
+    </div>
+  </div>
+
+  <!-- CATEGORIES -->
+  <section class="section-padding" id="categories">
+    <div class="container">
+      <div class="text-center mb-5">
+        <span class="section-tag">DISCOVER YOUR STYLE</span>
+        <h2 class="section-title">
+          تسوق حسب <span class="gold-text">القسم</span>
+        </h2>
+        <p class="section-subtitle">
+          كل اللي تحتاجه لإطلالة متكاملة في مكان واحد.
+        </p>
+        <button type="button" class="categories-list-toggle" id="categoriesListToggle" aria-controls="categoriesGrid"
+          aria-expanded="true">
+          <i class="fa-solid fa-chevron-up" aria-hidden="true"></i>
+          إخفاء الأقسام
+        </button>
+      </div>
+      <div class="row g-4" id="categoriesGrid"></div>
+    </div>
+  </section>
+
+  <!-- PRODUCTS -->
+  <section class="section-padding products-section" id="products">
+    <div class="container">
+      <div class="text-center">
+        <span class="section-tag">OUR COLLECTION</span>
+        <h2 class="section-title">
+          اختار <span class="gold-text">ستايلك</span>
+        </h2>
+        <p class="section-subtitle">
+          اكتشف منتجات DANZO وأضف اختياراتك إلى سلة المشتريات.
+        </p>
+      </div>
+      <div class="product-filters" id="productFilters"></div>
+      <div class="products-toolbar">
+        <div class="products-toolbar-control">
+          <label for="productsPerPage">عدد المنتجات:</label>
+          <select id="productsPerPage" class="products-page-size">
+            <option value="8" selected>8</option>
+            <option value="16">16</option>
+            <option value="32">32</option>
+          </select>
+        </div>
+        <div class="products-mobile-filter">
+          <div class="mobile-category-filter-control" id="mobileCategoryFilterControl">
+            <i class="fa-solid fa-filter" aria-hidden="true"></i>
+            <button type="button" id="mobileCategoryFilterButton" class="mobile-category-filter-button"
+              aria-haspopup="listbox" aria-controls="mobileCategoryFilterMenu" aria-expanded="false">
+              <span id="mobileCategoryFilterLabel">كل المنتجات</span>
+            </button>
+            <i class="fa-solid fa-chevron-down mobile-filter-chevron" aria-hidden="true"></i>
+            <div id="mobileCategoryFilterMenu" class="mobile-category-filter-menu" role="listbox"
+              aria-label="أقسام المنتجات" hidden></div>
+          </div>
+        </div>
+        <span id="productsCount" class="products-count" aria-live="polite"></span>
+      </div>
+      <div class="row g-4" id="productsGrid"></div>
+      <nav id="productsPagination" class="products-pagination" aria-label="صفحات المنتجات"></nav>
+      <div id="noProducts" class="text-center py-5" style="display: none; color: #a5afc0">
+        <i class="fa-solid fa-box-open fa-2x mb-3"></i>
+        <p>لا توجد منتجات مطابقة.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Product Details Modal -->
+  <div class="modal fade" id="productDetailsModal" tabindex="-1" aria-labelledby="productDetailsTitle"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-xl">
+      <div class="modal-content product-modal-content">
+        <button type="button" class="product-modal-close" data-bs-dismiss="modal" aria-label="إغلاق">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+
+        <div class="row g-0">
+          <!-- صور المنتج -->
+          <div class="col-lg-6 product-gallery">
+            <div class="product-main-image">
+              <img id="modalMainImage" src="" alt="صورة المنتج" />
+            </div>
+
+            <div class="product-thumbnails" id="modalProductThumbnails"></div>
+          </div>
+
+          <!-- تفاصيل المنتج -->
+          <div class="col-lg-6 product-details-panel">
+            <span class="product-modal-label">DANZO COLLECTION</span>
+
+            <h2 id="productDetailsTitle" class="product-modal-title">
+              اسم المنتج
+            </h2>
+
+            <div class="product-modal-price" id="modalProductPrice"></div>
+
+            <p id="modalProductDescription" class="product-modal-description"></p>
+
+            <hr class="product-modal-divider" />
+
+            <!-- اختيار المقاس -->
+            <div class="product-option">
+              <div class="option-heading">
+                <label>المقاس</label>
+                <span id="selectedSizeText">اختر المقاس</span>
+              </div>
+
+              <div class="size-options" id="modalSizeOptions"></div>
+            </div>
+
+            <!-- اختيار اللون -->
+            <div class="product-option mt-4">
+              <div class="option-heading">
+                <label>اللون</label>
+                <span id="selectedColorText">اختر اللون</span>
+              </div>
+
+              <div class="color-options" id="modalColorOptions"></div>
+            </div>
+
+            <!-- الكمية -->
+            <div class="product-option mt-4">
+              <label class="quantity-label">الكمية</label>
+
+              <div class="quantity-control">
+                <button type="button" id="quantityMinus" aria-label="تقليل الكمية">
+                  −
+                </button>
+
+                <input type="number" id="modalProductQuantity" value="1" min="1" max="99" />
+
+                <button type="button" id="quantityPlus" aria-label="زيادة الكمية">
+                  +
                 </button>
               </div>
-              <p class="search-hint" id="searchHint">
-                ابحث بالاسم أو نوع المنتج للوصول لاختيارك بسرعة.
-              </p>
             </div>
-            <div class="modal-footer">
-              <button
-                type="button"
-                class="search-cancel"
-                data-bs-dismiss="modal"
-              >
-                إلغاء
-              </button>
-              <button type="submit" class="search-submit">
-                <i class="fa-solid fa-magnifying-glass"></i> عرض النتائج
-              </button>
+
+            <button type="button" class="modal-add-to-cart" id="modalAddToCart">
+              <i class="fa-solid fa-bag-shopping"></i>
+              إضافة إلى السلة
+            </button>
+
+            <div class="product-modal-note">
+              <i class="fa-solid fa-truck-fast"></i>
+              اختار المقاس واللون المناسبين قبل الإضافة للسلة.
             </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FAVORITES PAGE -->
+  <section class="section-padding favorites-page" id="favoritesPage" style="display: none">
+    <div class="container">
+      <div class="favorites-heading">
+        <div class="favorites-heading-copy">
+          <span class="favorites-kicker">
+            <i class="fa-solid fa-heart"></i> YOUR FAVORITES
+          </span>
+          <h2>اختياراتك <span>المفضلة</span></h2>
+          <p>كل المنتجات اللي عجبتك محفوظة هنا، وجاهزة تكتشفها من جديد.</p>
+        </div>
+        <div class="favorites-heading-art" aria-hidden="true">
+          <i class="fa-solid fa-heart"></i>
+        </div>
+      </div>
+      <div class="favorites-toolbar">
+        <button class="outline-btn" id="backToShop">
+          <i class="fa-solid fa-arrow-right"></i> الرجوع للتسوق
+        </button>
+        <span id="favoritesSummary" class="favorites-summary"></span>
+      </div>
+      <div class="row g-4" id="favoritesGrid"></div>
+      <div id="favoritesEmpty" class="favorites-empty" style="display: none">
+        <i class="fa-regular fa-heart"></i>
+        <h4>لسه مفيش منتجات في المفضلة</h4>
+        <p class="mt-2">
+          اضغط على علامة القلب الموجودة على المنتج لإضافته هنا.
+        </p>
+        <button class="gold-btn mt-3" id="browseProducts">
+          اكتشف المنتجات <i class="fa-solid fa-arrow-left"></i>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- OFFERS -->
+  <section class="promo-section" id="offers">
+    <div class="container">
+      <div class="promo-box">
+        <div class="row align-items-center">
+          <div class="col-lg-8">
+            <span class="section-tag">DANZO SPECIAL</span>
+            <h2>
+              التفاصيل الصغيرة<br />هي اللي بتصنع
+              <span class="gold-text">الفرق.</span>
+            </h2>
+            <p>
+              اختار من مجموعتنا المتنوعة من الأحذية والشنط والإكسسوارات، واجمع
+              كل اختياراتك في سلة واحدة واطلب بسهولة عبر واتساب.
+            </p>
+            <a href="#products" class="gold-btn">تسوق مجموعتنا <i class="fa-solid fa-arrow-left"></i></a>
+          </div>
+          <div class="col-lg-4">
+            <div class="promo-icon">
+              <i class="fa-solid fa-shoe-prints"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section class="section-padding" id="about">
+    <div class="container">
+      <div class="text-center mb-5">
+        <span class="section-tag">WHY DANZO</span>
+        <h2 class="section-title">
+          ليه تختار <span class="gold-text">DANZO؟</span>
+        </h2>
+        <p class="section-subtitle">
+          تجربة تسوق بسيطة واختيارات متنوعة تكمل ستايلك.
+        </p>
+      </div>
+      <div class="row g-4">
+        <div class="col-md-6 col-lg-3">
+          <div class="feature-card">
+            <div class="feature-icon">
+              <i class="fa-solid fa-shoe-prints"></i>
+            </div>
+            <h5>ستايلات متنوعة</h5>
+            <p>اختيارات متنوعة من الأحذية والشنط والإكسسوارات لتناسب ذوقك.</p>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-3">
+          <div class="feature-card">
+            <div class="feature-icon">
+              <i class="fa-solid fa-cart-shopping"></i>
+            </div>
+            <h5>سلة سهلة الاستخدام</h5>
+            <p>أضف المنتجات وغيّر الكميات وراجع إجمالي طلبك قبل الإرسال.</p>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-3">
+          <div class="feature-card">
+            <div class="feature-icon">
+              <i class="fa-brands fa-whatsapp"></i>
+            </div>
+            <h5>طلب مباشر</h5>
+            <p>ابعت تفاصيل المنتجات وبياناتك إلى المتجر عبر واتساب.</p>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-3">
+          <div class="feature-card">
+            <div class="feature-icon"><i class="fa-solid fa-heart"></i></div>
+            <h5>قائمة المفضلة</h5>
+            <p>احتفظ بالمنتجات اللي عجبتك وارجعلها في أي وقت.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- NEWSLETTER -->
+  <section class="newsletter" id="contact">
+    <div class="container">
+      <div class="row align-items-center g-4">
+        <div class="col-lg-6">
+          <h3>خليك دايماً مع <span class="gold-text">DANZO</span></h3>
+          <p class="mb-0">تابع جديد المنتجات والعروض الخاصة بنا.</p>
+        </div>
+        <div class="col-lg-6">
+          <form class="newsletter-form" id="newsletterForm">
+            <input type="email" id="newsletterEmail" placeholder="اكتب بريدك الإلكتروني" required />
+            <button type="submit" class="gold-btn">
+              اشترك الآن <i class="fa-solid fa-arrow-left"></i>
+            </button>
           </form>
         </div>
       </div>
     </div>
+  </section>
 
-    <!-- HERO -->
-    <section class="hero" id="home">
-      <div class="container">
-        <div class="row align-items-center">
-          <div class="col-lg-6">
-            <div class="hero-content">
-              <div class="hero-badge"><span></span> أسلوبك يبدأ من اختيارك</div>
-              <h1>مش مجرد شوز...<span class="highlight">دي هويتك.</span></h1>
-              <p class="hero-description">
-                اكتشف عالم DANZO، حيث الأناقة بتقابل التميز. من السنيكرز والجزم
-                الكلاسيك إلى الميرور والهاي كوبي والشربات، اختار الستايل اللي
-                يعبر عنك.
-              </p>
-              <div class="hero-buttons">
-                <a href="#products" class="gold-btn"
-                  >اكتشف مجموعتنا <i class="fa-solid fa-arrow-left"></i
-                ></a>
-                <a href="#categories" class="outline-btn"
-                  >استكشف الأقسام <i class="fa-solid fa-layer-group"></i
-                ></a>
-              </div>
-              <div class="hero-stats">
-                <div>
-                  <div class="stat-number">01.</div>
-                  <div class="stat-label">ستايل يميزك</div>
-                </div>
-                <div>
-                  <div class="stat-number">02.</div>
-                  <div class="stat-label">اختيارات متنوعة</div>
-                </div>
-                <div>
-                  <div class="stat-number">03.</div>
-                  <div class="stat-label">إطلالة متكاملة</div>
-                </div>
-              </div>
-            </div>
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="row g-4">
+        <div class="col-lg-4 col-md-6">
+          <a href="#home" class="footer-brand">DAN<span class="brand-blue">ZO</span></a>
+          <p class="footer-description">
+            مش مجرد شوز، دي هويتك. اكتشف مجموعة DANZO واختار الستايل اللي يعبر
+            عنك.
+          </p>
+          <div class="social-links">
+            <a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+            <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+            <a href="#" aria-label="TikTok"><i class="fa-brands fa-tiktok"></i></a>
+            <a href="#" id="footerWhatsapp" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
           </div>
-          <div class="col-lg-6">
-            <div class="hero-visual">
-              <div class="hero-circle"><span class="orbit-dot"></span></div>
-              <img
-                class="hero-shoe"
-                src="img/4.jpg"
-                alt="حذاء DANZO"
-                onerror="
-                  this.onerror = null;
-                  this.src =
-                    'https://placehold.co/600x500/101827/72b4ff?text=DANZO';
-                "
-              />
-              <div class="floating-label label-one">
-                <small>YOUR STYLE</small><strong>BE DIFFERENT.</strong>
-              </div>
-              <div class="floating-label label-two">
-                <small>اختار إطلالتك</small
-                ><strong
-                  ><i class="fa-solid fa-star gold-text"></i> DANZO
-                  COLLECTION</strong
-                >
-              </div>
-            </div>
-          </div>
+        </div>
+        <div class="col-lg-2 col-md-6">
+          <h6>روابط سريعة</h6>
+          <ul class="footer-links">
+            <li><a href="#home">الرئيسية</a></li>
+            <li><a href="#categories">الأقسام</a></li>
+            <li><a href="#products">منتجاتنا</a></li>
+            <li><a href="#offers">العروض</a></li>
+          </ul>
+        </div>
+        <div class="col-lg-3 col-md-6">
+          <h6>الأقسام</h6>
+          <ul class="footer-links" id="footerCategories"></ul>
+        </div>
+        <div class="col-lg-3 col-md-6">
+          <h6>تواصل معنا</h6>
+          <ul class="footer-links">
+            <li>
+              <a href="#" id="footerWhatsappText"><i class="fa-brands fa-whatsapp ms-2"></i> واتساب</a>
+            </li>
+            <li>
+              <a href="#contact"><i class="fa-regular fa-envelope ms-2"></i> البريد
+                الإلكتروني</a>
+            </li>
+            <li>
+              <a href="#" id="footerCartLink"><i class="fa-solid fa-bag-shopping ms-2"></i> سلة
+                المشتريات</a>
+            </li>
+            <li>
+              <a href="#" id="footerFavoritesLink"><i class="fa-regular fa-heart ms-2"></i> المفضلة</a>
+            </li>
+          </ul>
         </div>
       </div>
-    </section>
-
-    <!-- TICKER -->
-    <div class="ticker">
-      <div class="ticker-track">
-        <div class="ticker-item">
-          DANZO <i class="fa-solid fa-star"></i> YOUR STYLE YOUR RULES
-        </div>
-        <div class="ticker-item">
-          سنيكرز <i class="fa-solid fa-star"></i> جزم كلاسيك
-        </div>
-        <div class="ticker-item">
-          الميرور <i class="fa-solid fa-star"></i> الهاي كوبي
-        </div>
-        <div class="ticker-item">
-          الشربات <i class="fa-solid fa-star"></i> إكسسوارات
-        </div>
-        <div class="ticker-item">
-          DANZO <i class="fa-solid fa-star"></i> YOUR STYLE YOUR RULES
-        </div>
-        <div class="ticker-item">
-          سنيكرز <i class="fa-solid fa-star"></i> جزم كلاسيك
-        </div>
-        <div class="ticker-item">
-          الميرور <i class="fa-solid fa-star"></i> الهاي كوبي
-        </div>
-        <div class="ticker-item">
-          الشربات <i class="fa-solid fa-star"></i> إكسسوارات
-        </div>
+      <div class="footer-bottom d-flex flex-wrap justify-content-between gap-2">
+        <span>© <span id="currentYear"></span> DANZO. جميع الحقوق محفوظة.</span>
+        <span>YOUR STYLE. YOUR RULES.</span>
       </div>
     </div>
+  </footer>
 
-    <!-- CATEGORIES -->
-    <section class="section-padding" id="categories">
-      <div class="container">
-        <div class="text-center mb-5">
-          <span class="section-tag">DISCOVER YOUR STYLE</span>
-          <h2 class="section-title">
-            تسوق حسب <span class="gold-text">القسم</span>
-          </h2>
-          <p class="section-subtitle">
-            كل اللي تحتاجه لإطلالة متكاملة في مكان واحد.
-          </p>
-          <button
-            type="button"
-            class="categories-list-toggle"
-            id="categoriesListToggle"
-            aria-controls="categoriesGrid"
-            aria-expanded="true"
-          >
-            <i class="fa-solid fa-chevron-up" aria-hidden="true"></i>
-            إخفاء الأقسام
+  <!-- CART MODAL -->
+  <div class="modal fade cart-modal" id="danzoCartModal" tabindex="-1" aria-labelledby="cartModalTitle"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-xl modal-dialog-scrollable">
+      <div class="modal-content">
+        <div class="modal-header">
+          <div class="cart-modal-title-group">
+            <h5 class="modal-title fw-bold" id="cartModalTitle">
+              <i class="fa-solid fa-bag-shopping gold-text ms-2"></i> سلة
+              مشتريات DANZO
+            </h5>
+            <p>راجع اختياراتك وأكمل بيانات التوصيل لإتمام طلبك.</p>
+          </div>
+          <button type="button" class="cart-close" data-bs-dismiss="modal" aria-label="إغلاق">
+            <i class="fa-solid fa-xmark" aria-hidden="true"></i>
           </button>
         </div>
-        <div class="row g-4" id="categoriesGrid"></div>
-      </div>
-    </section>
-
-    <!-- PRODUCTS -->
-    <section class="section-padding products-section" id="products">
-      <div class="container">
-        <div class="text-center">
-          <span class="section-tag">OUR COLLECTION</span>
-          <h2 class="section-title">
-            اختار <span class="gold-text">ستايلك</span>
-          </h2>
-          <p class="section-subtitle">
-            اكتشف منتجات DANZO وأضف اختياراتك إلى سلة المشتريات.
-          </p>
-        </div>
-        <div class="product-filters" id="productFilters"></div>
-        <div class="products-toolbar">
-          <div class="products-toolbar-control">
-            <label for="productsPerPage">عدد المنتجات:</label>
-            <select id="productsPerPage" class="products-page-size">
-              <option value="8" selected>8</option>
-              <option value="16">16</option>
-              <option value="32">32</option>
-            </select>
-          </div>
-          <div class="products-mobile-filter">
-            <div class="mobile-category-filter-control" id="mobileCategoryFilterControl">
-              <i class="fa-solid fa-filter" aria-hidden="true"></i>
-              <button
-                type="button"
-                id="mobileCategoryFilterButton"
-                class="mobile-category-filter-button"
-                aria-haspopup="listbox"
-                aria-controls="mobileCategoryFilterMenu"
-                aria-expanded="false"
-              >
-                <span id="mobileCategoryFilterLabel">كل المنتجات</span>
-              </button>
-              <i
-                class="fa-solid fa-chevron-down mobile-filter-chevron"
-                aria-hidden="true"
-              ></i>
-              <div
-                id="mobileCategoryFilterMenu"
-                class="mobile-category-filter-menu"
-                role="listbox"
-                aria-label="أقسام المنتجات"
-                hidden
-              ></div>
-            </div>
-          </div>
-          <span id="productsCount" class="products-count" aria-live="polite"></span>
-        </div>
-        <div class="row g-4" id="productsGrid"></div>
-        <nav
-          id="productsPagination"
-          class="products-pagination"
-          aria-label="صفحات المنتجات"
-        ></nav>
-        <div
-          id="noProducts"
-          class="text-center py-5"
-          style="display: none; color: #a5afc0"
-        >
-          <i class="fa-solid fa-box-open fa-2x mb-3"></i>
-          <p>لا توجد منتجات مطابقة.</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- Product Details Modal -->
-    <div
-      class="modal fade"
-      id="productDetailsModal"
-      tabindex="-1"
-      aria-labelledby="productDetailsTitle"
-      aria-hidden="true"
-    >
-      <div class="modal-dialog modal-dialog-centered modal-xl">
-        <div class="modal-content product-modal-content">
-          <button
-            type="button"
-            class="product-modal-close"
-            data-bs-dismiss="modal"
-            aria-label="إغلاق"
-          >
-            <i class="fa-solid fa-xmark"></i>
-          </button>
-
-          <div class="row g-0">
-            <!-- صور المنتج -->
-            <div class="col-lg-6 product-gallery">
-              <div class="product-main-image">
-                <img id="modalMainImage" src="" alt="صورة المنتج" />
-              </div>
-
-              <div class="product-thumbnails" id="modalProductThumbnails"></div>
-            </div>
-
-            <!-- تفاصيل المنتج -->
-            <div class="col-lg-6 product-details-panel">
-              <span class="product-modal-label">DANZO COLLECTION</span>
-
-              <h2 id="productDetailsTitle" class="product-modal-title">
-                اسم المنتج
-              </h2>
-
-              <div class="product-modal-price" id="modalProductPrice"></div>
-
-              <p
-                id="modalProductDescription"
-                class="product-modal-description"
-              ></p>
-
-              <hr class="product-modal-divider" />
-
-              <!-- اختيار المقاس -->
-              <div class="product-option">
-                <div class="option-heading">
-                  <label>المقاس</label>
-                  <span id="selectedSizeText">اختر المقاس</span>
-                </div>
-
-                <div class="size-options" id="modalSizeOptions"></div>
-              </div>
-
-              <!-- اختيار اللون -->
-              <div class="product-option mt-4">
-                <div class="option-heading">
-                  <label>اللون</label>
-                  <span id="selectedColorText">اختر اللون</span>
-                </div>
-
-                <div class="color-options" id="modalColorOptions"></div>
-              </div>
-
-              <!-- الكمية -->
-              <div class="product-option mt-4">
-                <label class="quantity-label">الكمية</label>
-
-                <div class="quantity-control">
-                  <button
-                    type="button"
-                    id="quantityMinus"
-                    aria-label="تقليل الكمية"
-                  >
-                    −
-                  </button>
-
-                  <input
-                    type="number"
-                    id="modalProductQuantity"
-                    value="1"
-                    min="1"
-                    max="99"
-                  />
-
-                  <button
-                    type="button"
-                    id="quantityPlus"
-                    aria-label="زيادة الكمية"
-                  >
-                    +
-                  </button>
-                </div>
-              </div>
-
-              <button
-                type="button"
-                class="modal-add-to-cart"
-                id="modalAddToCart"
-              >
-                <i class="fa-solid fa-bag-shopping"></i>
-                إضافة إلى السلة
-              </button>
-
-              <div class="product-modal-note">
-                <i class="fa-solid fa-truck-fast"></i>
-                اختار المقاس واللون المناسبين قبل الإضافة للسلة.
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- FAVORITES PAGE -->
-    <section
-      class="section-padding favorites-page"
-      id="favoritesPage"
-      style="display: none"
-    >
-      <div class="container">
-        <div class="favorites-heading">
-          <div class="favorites-heading-copy">
-            <span class="favorites-kicker">
-              <i class="fa-solid fa-heart"></i> YOUR FAVORITES
-            </span>
-            <h2>اختياراتك <span>المفضلة</span></h2>
-            <p>كل المنتجات اللي عجبتك محفوظة هنا، وجاهزة تكتشفها من جديد.</p>
-          </div>
-          <div class="favorites-heading-art" aria-hidden="true">
-            <i class="fa-solid fa-heart"></i>
-          </div>
-        </div>
-        <div class="favorites-toolbar">
-          <button class="outline-btn" id="backToShop">
-            <i class="fa-solid fa-arrow-right"></i> الرجوع للتسوق
-          </button>
-          <span id="favoritesSummary" class="favorites-summary"></span>
-        </div>
-        <div class="row g-4" id="favoritesGrid"></div>
-        <div id="favoritesEmpty" class="favorites-empty" style="display: none">
-          <i class="fa-regular fa-heart"></i>
-          <h4>لسه مفيش منتجات في المفضلة</h4>
-          <p class="mt-2">
-            اضغط على علامة القلب الموجودة على المنتج لإضافته هنا.
-          </p>
-          <button class="gold-btn mt-3" id="browseProducts">
-            اكتشف المنتجات <i class="fa-solid fa-arrow-left"></i>
-          </button>
-        </div>
-      </div>
-    </section>
-
-    <!-- OFFERS -->
-    <section class="promo-section" id="offers">
-      <div class="container">
-        <div class="promo-box">
-          <div class="row align-items-center">
-            <div class="col-lg-8">
-              <span class="section-tag">DANZO SPECIAL</span>
-              <h2>
-                التفاصيل الصغيرة<br />هي اللي بتصنع
-                <span class="gold-text">الفرق.</span>
-              </h2>
-              <p>
-                اختار من مجموعتنا المتنوعة من الأحذية والشنط والإكسسوارات، واجمع
-                كل اختياراتك في سلة واحدة واطلب بسهولة عبر واتساب.
-              </p>
-              <a href="#products" class="gold-btn"
-                >تسوق مجموعتنا <i class="fa-solid fa-arrow-left"></i
-              ></a>
-            </div>
-            <div class="col-lg-4">
-              <div class="promo-icon">
-                <i class="fa-solid fa-shoe-prints"></i>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ABOUT -->
-    <section class="section-padding" id="about">
-      <div class="container">
-        <div class="text-center mb-5">
-          <span class="section-tag">WHY DANZO</span>
-          <h2 class="section-title">
-            ليه تختار <span class="gold-text">DANZO؟</span>
-          </h2>
-          <p class="section-subtitle">
-            تجربة تسوق بسيطة واختيارات متنوعة تكمل ستايلك.
-          </p>
-        </div>
-        <div class="row g-4">
-          <div class="col-md-6 col-lg-3">
-            <div class="feature-card">
-              <div class="feature-icon">
-                <i class="fa-solid fa-shoe-prints"></i>
-              </div>
-              <h5>ستايلات متنوعة</h5>
-              <p>اختيارات متنوعة من الأحذية والشنط والإكسسوارات لتناسب ذوقك.</p>
-            </div>
-          </div>
-          <div class="col-md-6 col-lg-3">
-            <div class="feature-card">
-              <div class="feature-icon">
-                <i class="fa-solid fa-cart-shopping"></i>
-              </div>
-              <h5>سلة سهلة الاستخدام</h5>
-              <p>أضف المنتجات وغيّر الكميات وراجع إجمالي طلبك قبل الإرسال.</p>
-            </div>
-          </div>
-          <div class="col-md-6 col-lg-3">
-            <div class="feature-card">
-              <div class="feature-icon">
-                <i class="fa-brands fa-whatsapp"></i>
-              </div>
-              <h5>طلب مباشر</h5>
-              <p>ابعت تفاصيل المنتجات وبياناتك إلى المتجر عبر واتساب.</p>
-            </div>
-          </div>
-          <div class="col-md-6 col-lg-3">
-            <div class="feature-card">
-              <div class="feature-icon"><i class="fa-solid fa-heart"></i></div>
-              <h5>قائمة المفضلة</h5>
-              <p>احتفظ بالمنتجات اللي عجبتك وارجعلها في أي وقت.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- NEWSLETTER -->
-    <section class="newsletter" id="contact">
-      <div class="container">
-        <div class="row align-items-center g-4">
-          <div class="col-lg-6">
-            <h3>خليك دايماً مع <span class="gold-text">DANZO</span></h3>
-            <p class="mb-0">تابع جديد المنتجات والعروض الخاصة بنا.</p>
-          </div>
-          <div class="col-lg-6">
-            <form class="newsletter-form" id="newsletterForm">
-              <input
-                type="email"
-                id="newsletterEmail"
-                placeholder="اكتب بريدك الإلكتروني"
-                required
-              />
-              <button type="submit" class="gold-btn">
-                اشترك الآن <i class="fa-solid fa-arrow-left"></i>
-              </button>
-            </form>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- FOOTER -->
-    <footer class="footer">
-      <div class="container">
-        <div class="row g-4">
-          <div class="col-lg-4 col-md-6">
-            <a href="#home" class="footer-brand"
-              >DAN<span class="brand-blue">ZO</span></a
-            >
-            <p class="footer-description">
-              مش مجرد شوز، دي هويتك. اكتشف مجموعة DANZO واختار الستايل اللي يعبر
-              عنك.
-            </p>
-            <div class="social-links">
-              <a href="#" aria-label="Facebook"
-                ><i class="fa-brands fa-facebook-f"></i
-              ></a>
-              <a href="#" aria-label="Instagram"
-                ><i class="fa-brands fa-instagram"></i
-              ></a>
-              <a href="#" aria-label="TikTok"
-                ><i class="fa-brands fa-tiktok"></i
-              ></a>
-              <a href="#" id="footerWhatsapp" aria-label="WhatsApp"
-                ><i class="fa-brands fa-whatsapp"></i
-              ></a>
-            </div>
-          </div>
-          <div class="col-lg-2 col-md-6">
-            <h6>روابط سريعة</h6>
-            <ul class="footer-links">
-              <li><a href="#home">الرئيسية</a></li>
-              <li><a href="#categories">الأقسام</a></li>
-              <li><a href="#products">منتجاتنا</a></li>
-              <li><a href="#offers">العروض</a></li>
-            </ul>
-          </div>
-          <div class="col-lg-3 col-md-6">
-            <h6>الأقسام</h6>
-            <ul class="footer-links" id="footerCategories"></ul>
-          </div>
-          <div class="col-lg-3 col-md-6">
-            <h6>تواصل معنا</h6>
-            <ul class="footer-links">
-              <li>
-                <a href="#" id="footerWhatsappText"
-                  ><i class="fa-brands fa-whatsapp ms-2"></i> واتساب</a
-                >
-              </li>
-              <li>
-                <a href="#contact"
-                  ><i class="fa-regular fa-envelope ms-2"></i> البريد
-                  الإلكتروني</a
-                >
-              </li>
-              <li>
-                <a href="#" id="footerCartLink"
-                  ><i class="fa-solid fa-bag-shopping ms-2"></i> سلة
-                  المشتريات</a
-                >
-              </li>
-              <li>
-                <a href="#" id="footerFavoritesLink"
-                  ><i class="fa-regular fa-heart ms-2"></i> المفضلة</a
-                >
-              </li>
-            </ul>
-          </div>
-        </div>
-        <div
-          class="footer-bottom d-flex flex-wrap justify-content-between gap-2"
-        >
-          <span
-            >© <span id="currentYear"></span> DANZO. جميع الحقوق محفوظة.</span
-          >
-          <span>YOUR STYLE. YOUR RULES.</span>
-        </div>
-      </div>
-    </footer>
-
-    <!-- CART MODAL -->
-    <div
-      class="modal fade cart-modal"
-      id="danzoCartModal"
-      tabindex="-1"
-      aria-labelledby="cartModalTitle"
-      aria-hidden="true"
-    >
-      <div
-        class="modal-dialog modal-dialog-centered modal-xl modal-dialog-scrollable"
-      >
-        <div class="modal-content">
-          <div class="modal-header">
-            <div class="cart-modal-title-group">
-              <h5 class="modal-title fw-bold" id="cartModalTitle">
-                <i class="fa-solid fa-bag-shopping gold-text ms-2"></i> سلة
-                مشتريات DANZO
-              </h5>
-              <p>راجع اختياراتك وأكمل بيانات التوصيل لإتمام طلبك.</p>
-            </div>
-            <button
-              type="button"
-              class="cart-close"
-              data-bs-dismiss="modal"
-              aria-label="إغلاق"
-            >
-              <i class="fa-solid fa-xmark" aria-hidden="true"></i>
+        <div class="modal-body">
+          <div id="cartEmpty" class="cart-empty">
+            <i class="fa-solid fa-cart-shopping"></i>
+            <h5 class="text-white fw-bold">سلتك لسه فاضية</h5>
+            <p>اختار المنتجات اللي عجبتك وضيفها للسلة.</p>
+            <button type="button" class="gold-btn mt-2" data-bs-dismiss="modal">
+              تصفح المنتجات
             </button>
           </div>
-          <div class="modal-body">
-            <div id="cartEmpty" class="cart-empty">
-              <i class="fa-solid fa-cart-shopping"></i>
-              <h5 class="text-white fw-bold">سلتك لسه فاضية</h5>
-              <p>اختار المنتجات اللي عجبتك وضيفها للسلة.</p>
-              <button
-                type="button"
-                class="gold-btn mt-2"
-                data-bs-dismiss="modal"
-              >
-                تصفح المنتجات
-              </button>
-            </div>
-            <div id="cartContent" style="display: none">
-              <div class="cart-layout">
-                <section
-                  class="cart-panel cart-items-panel"
-                  aria-labelledby="cartItemsTitle"
-                >
-                  <div class="cart-section-heading">
-                    <div>
-                      <span class="cart-panel-kicker">YOUR BAG</span>
-                      <h6 id="cartItemsTitle">منتجاتك</h6>
+          <div id="cartContent" style="display: none">
+            <div class="cart-layout">
+              <section class="cart-panel cart-items-panel" aria-labelledby="cartItemsTitle">
+                <div class="cart-section-heading">
+                  <div>
+                    <span class="cart-panel-kicker">YOUR BAG</span>
+                    <h6 id="cartItemsTitle">منتجاتك</h6>
+                  </div>
+                  <span class="cart-items-count" aria-live="polite">
+                    <strong id="cartModalCount">0</strong> عنصر
+                  </span>
+                </div>
+                <div id="cartItems"></div>
+                <div class="cart-total-row">
+                  <span>
+                    <strong>إجمالي الطلب</strong>
+                    <small>لا يشمل رسوم التوصيل</small>
+                  </span>
+                  <span class="cart-total-value" id="cartTotal">0 ج.م</span>
+                </div>
+                <p class="order-note">
+                  يتم تأكيد أي رسوم توصيل إضافية مع المتجر.
+                </p>
+              </section>
+              <section class="cart-panel cart-checkout-panel" aria-labelledby="checkoutTitle">
+                <div class="cart-section-heading checkout-section-heading">
+                  <div>
+                    <span class="cart-panel-kicker">DELIVERY DETAILS</span>
+                    <h6 id="checkoutTitle">بيانات العميل</h6>
+                  </div>
+                  <i class="fa-regular fa-user" aria-hidden="true"></i>
+                </div>
+                <form id="checkoutForm" novalidate>
+                  <div class="checkout-alert" id="checkoutError" role="alert" aria-live="assertive" hidden></div>
+                  <div class="row g-3">
+                    <div class="col-12 col-xl-6">
+                      <label for="customerName" class="form-label">الاسم بالكامل *</label><input type="text"
+                        id="customerName" class="form-control" placeholder="اكتب اسمك" required maxlength="100"
+                        autocomplete="name" aria-describedby="customerNameError" />
+                      <div class="invalid-feedback" id="customerNameError"></div>
                     </div>
-                    <span class="cart-items-count" aria-live="polite">
-                      <strong id="cartModalCount">0</strong> عنصر
-                    </span>
+                    <div class="col-12 col-xl-6">
+                      <label for="customerPhone" class="form-label">رقم هاتفك *</label><input type="tel"
+                        id="customerPhone" class="form-control" placeholder="01xxxxxxxxx" required maxlength="20"
+                        inputmode="tel" autocomplete="tel" aria-describedby="customerPhoneError" />
+                      <div class="invalid-feedback" id="customerPhoneError"></div>
+                    </div>
+                    <div class="col-12">
+                      <label for="customerAddress" class="form-label">العنوان بالتفصيل *</label><input type="text"
+                        id="customerAddress" class="form-control" placeholder="المحافظة، المدينة، الشارع، رقم العقار"
+                        required maxlength="300" autocomplete="street-address"
+                        aria-describedby="customerAddressError" />
+                      <div class="invalid-feedback" id="customerAddressError"></div>
+                    </div>
+                    <div class="col-12">
+                      <label for="customerNotes" class="form-label">ملاحظات إضافية (اختياري)</label><textarea
+                        id="customerNotes" class="form-control" rows="3" maxlength="1000"
+                        placeholder="المقاس المطلوب أو اللون أو أي ملاحظات..."></textarea>
+                    </div>
                   </div>
-                  <div id="cartItems"></div>
-                  <div class="cart-total-row">
-                    <span>
-                      <strong>إجمالي الطلب</strong>
-                      <small>لا يشمل رسوم التوصيل</small>
-                    </span>
-                    <span class="cart-total-value" id="cartTotal">0 ج.م</span>
-                  </div>
+                  <button type="submit" class="whatsapp-order-btn mt-4">
+                    <i class="fa-brands fa-whatsapp fa-lg"></i> اطلب الآن عبر
+                    واتساب
+                  </button>
                   <p class="order-note">
-                    يتم تأكيد أي رسوم توصيل إضافية مع المتجر.
+                    هتتفتح رسالة جاهزة بتفاصيل طلبك. اضغط إرسال داخل واتساب
+                    لإتمام إرسال الطلب.
                   </p>
-                </section>
-                <section
-                  class="cart-panel cart-checkout-panel"
-                  aria-labelledby="checkoutTitle"
-                >
-                  <div class="cart-section-heading checkout-section-heading">
-                    <div>
-                      <span class="cart-panel-kicker">DELIVERY DETAILS</span>
-                      <h6 id="checkoutTitle">بيانات العميل</h6>
-                    </div>
-                    <i class="fa-regular fa-user" aria-hidden="true"></i>
-                  </div>
-                  <form id="checkoutForm" novalidate>
-                    <div
-                      class="checkout-alert"
-                      id="checkoutError"
-                      role="alert"
-                      aria-live="assertive"
-                      hidden
-                    ></div>
-                    <div class="row g-3">
-                      <div class="col-12 col-xl-6">
-                        <label for="customerName" class="form-label"
-                          >الاسم بالكامل *</label
-                        ><input
-                          type="text"
-                          id="customerName"
-                          class="form-control"
-                          placeholder="اكتب اسمك"
-                          required
-                          maxlength="100"
-                          autocomplete="name"
-                          aria-describedby="customerNameError"
-                        />
-                        <div
-                          class="invalid-feedback"
-                          id="customerNameError"
-                        ></div>
-                      </div>
-                      <div class="col-12 col-xl-6">
-                        <label for="customerPhone" class="form-label"
-                          >رقم هاتفك *</label
-                        ><input
-                          type="tel"
-                          id="customerPhone"
-                          class="form-control"
-                          placeholder="01xxxxxxxxx"
-                          required
-                          maxlength="20"
-                          inputmode="tel"
-                          autocomplete="tel"
-                          aria-describedby="customerPhoneError"
-                        />
-                        <div
-                          class="invalid-feedback"
-                          id="customerPhoneError"
-                        ></div>
-                      </div>
-                      <div class="col-12">
-                        <label for="customerAddress" class="form-label"
-                          >العنوان بالتفصيل *</label
-                        ><input
-                          type="text"
-                          id="customerAddress"
-                          class="form-control"
-                          placeholder="المحافظة، المدينة، الشارع، رقم العقار"
-                          required
-                          maxlength="300"
-                          autocomplete="street-address"
-                          aria-describedby="customerAddressError"
-                        />
-                        <div
-                          class="invalid-feedback"
-                          id="customerAddressError"
-                        ></div>
-                      </div>
-                      <div class="col-12">
-                        <label for="customerNotes" class="form-label"
-                          >ملاحظات إضافية (اختياري)</label
-                        ><textarea
-                          id="customerNotes"
-                          class="form-control"
-                          rows="3"
-                          maxlength="1000"
-                          placeholder="المقاس المطلوب أو اللون أو أي ملاحظات..."
-                        ></textarea>
-                      </div>
-                    </div>
-                    <button type="submit" class="whatsapp-order-btn mt-4">
-                      <i class="fa-brands fa-whatsapp fa-lg"></i> اطلب الآن عبر
-                      واتساب
-                    </button>
-                    <p class="order-note">
-                      هتتفتح رسالة جاهزة بتفاصيل طلبك. اضغط إرسال داخل واتساب
-                      لإتمام إرسال الطلب.
-                    </p>
-                  </form>
-                </section>
-              </div>
+                </form>
+              </section>
             </div>
           </div>
-          <div class="modal-footer">
-            <button type="button" class="outline-btn" data-bs-dismiss="modal">
-              <i class="fa-solid fa-arrow-right"></i> متابعة التسوق
-            </button>
-          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="outline-btn" data-bs-dismiss="modal">
+            <i class="fa-solid fa-arrow-right"></i> متابعة التسوق
+          </button>
         </div>
       </div>
     </div>
+  </div>
 
-    <div
-      class="danzo-toast"
-      id="danzoToast"
-      role="status"
-      aria-live="polite"
-    ></div>
+  <div class="danzo-toast" id="danzoToast" role="status" aria-live="polite"></div>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="js/products.js"></script>
-    <script src="js/script.js"></script>
-  </body>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="js/products.js"></script>
+  <script src="js/script.js"></script>
+</body>
+
 </html>

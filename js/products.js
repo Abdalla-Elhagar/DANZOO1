@@ -438,4 +438,18 @@ const products = [
     badge: "مميز",
     rating: "4.7",
   },
+  {
+    id: "sneaker-28",
+    image: "img/productsImg/pro28.jpeg",
+    category: "sneakers",
+    categoryName: "سنيكرز",
+    sizes: ["40", "41", "42", "43", "44"],
+    colors: [sneakerColors.blue, sneakerColors.white],
+    name: "سنيكرز سيتي بلو",
+    price: 1620,
+    oldPrice: null,
+    description: "لمسة زرقاء أنيقة بتصميم مناسب للمدينة.",
+    badge: "مميز",
+    rating: "4.7",
+  },
 ];
