@@ -2336,13 +2336,6 @@ button {
   transition: opacity 0.2s ease;
 }
 
-.product-thumbnails {
-  display: flex;
-  gap: 12px;
-  overflow-x: auto;
-  padding: 15px 2px 5px;
-}
-
 .product-thumbnail {
   flex: 0 0 75px;
   width: 75px;

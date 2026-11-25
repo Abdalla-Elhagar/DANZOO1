@@ -68,8 +68,6 @@ function openProductDetails(productId) {
 
 function renderModalImages(images) {
   const mainImage = document.getElementById("modalMainImage");
-  const thumbnails = document.getElementById("modalProductThumbnails");
-  thumbnails.innerHTML = "";
 
   const validImages = [...new Set((images || []).filter(Boolean))];
   if (!validImages.length) {
@@ -93,18 +91,6 @@ function renderModalImages(images) {
     thumbnailImage.alt = `صورة ${index + 1}`;
     thumbnailImage.loading = "lazy";
     button.appendChild(thumbnailImage);
-
-    button.addEventListener("click", () => {
-      selectedProductImage = index;
-      mainImage.src = image;
-      thumbnails
-        .querySelectorAll(".product-thumbnail")
-        .forEach((item, itemIndex) => {
-          item.classList.toggle("active", itemIndex === index);
-        });
-    });
-
-    thumbnails.appendChild(button);
   });
 }
 
