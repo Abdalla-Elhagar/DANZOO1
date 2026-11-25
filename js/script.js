@@ -1086,7 +1086,7 @@ document.getElementById("checkoutForm").addEventListener("submit", (event) => {
     ...(customerNotes ? [`ملاحظات: ${customerNotes}`] : []),
     "",
     "من فضلكم تأكيد توفر المنتجات وتفاصيل التوصيل.",
-    "شكراً لاختياركم DANZO 💙",
+    "شكراً لاختياركم DANZO",
   ].join("\n");
 
   const url =

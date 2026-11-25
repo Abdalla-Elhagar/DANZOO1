@@ -677,7 +677,7 @@ const products = [
     category: "classic",
     categoryName: "جزم كلاسيك",
     sizes: ["41", "42", "43", "44", "45"],
-    colors: [sneakerColors.white],
+    colors: [sneakerColors.brown],
     name: "هاف جلد طبيعي",
     price: 700,
     oldPrice: 1000,
