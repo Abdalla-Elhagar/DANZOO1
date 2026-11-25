@@ -359,9 +359,7 @@ function setMobileCategoryFilterOpen(open, focusSelected = false) {
     .querySelector(".mobile-filter-chevron")
     .classList.toggle("fa-chevron-down", !open);
   if (open && focusSelected) {
-    mobileCategoryFilterMenu
-      .querySelector('[aria-selected="true"]')
-      .focus();
+    mobileCategoryFilterMenu.querySelector('[aria-selected="true"]').focus();
   }
 }
 
@@ -393,7 +391,9 @@ mobileCategoryFilterMenu.addEventListener("click", (event) => {
 });
 
 mobileCategoryFilterMenu.addEventListener("keydown", (event) => {
-  const options = [...mobileCategoryFilterMenu.querySelectorAll("[role='option']")];
+  const options = [
+    ...mobileCategoryFilterMenu.querySelectorAll("[role='option']"),
+  ];
   const currentIndex = options.indexOf(document.activeElement);
   let nextIndex = currentIndex;
 
@@ -403,7 +403,8 @@ mobileCategoryFilterMenu.addEventListener("keydown", (event) => {
     mobileCategoryFilterButton.focus();
     return;
   }
-  if (event.key === "ArrowDown") nextIndex = (currentIndex + 1) % options.length;
+  if (event.key === "ArrowDown")
+    nextIndex = (currentIndex + 1) % options.length;
   else if (event.key === "ArrowUp")
     nextIndex = (currentIndex - 1 + options.length) % options.length;
   else if (event.key === "Home") nextIndex = 0;
@@ -448,7 +449,6 @@ function productCard(product, options = {}) {
                 <div class="product-category">${escapeHTML(product.categoryName)}</div>
                 <h5 class="product-name">${escapeHTML(product.name)}</h5>
                 <p class="product-description">${escapeHTML(product.description || "اختيار مميز من مجموعة DANZO.")}</p>
-                <div class="product-rating"><i class="fa-solid fa-star"></i> ${escapeHTML(product.rating || "4.8")}</div>
                 <div class="product-bottom">
                     <span class="product-price">${formatPrice(product.price)}</span>
                     ${product.oldPrice ? `<span class="product-old-price">${formatPrice(product.oldPrice)}</span>` : ""}
