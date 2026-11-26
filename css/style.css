@@ -1157,6 +1157,43 @@ button {
   color: #777;
   font-size: 11px;
 }
+.rie.fcode-credit {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 6px 12px;
+  border: 1px solid rgba(114, 180, 255, 0.24);
+  border-radius: 999px;
+  background: linear-gradient(110deg, rgba(37, 137, 255, 0.06), rgba(114, 180, 255, 0.13), rgba(37, 137, 255, 0.06));
+  color: #aab5c5;
+  animation: rieCreditGlow 3s ease-in-out infinite;
+}
+.rie.fcode-wordmark {
+  background: linear-gradient(90deg, #72b4ff 15%, #fff 50%, #2589ff 85%);
+  background-size: 200% auto;
+  background-clip: text;
+  color: transparent;
+  font-size: 12px;
+  font-weight: 900;
+  letter-spacing: 1.5px;
+  animation: rieCodeShine 3s linear infinite;
+}
+@keyframes rieCreditGlow {
+  0%,
+  100% {
+    border-color: rgba(114, 180, 255, 0.2);
+    box-shadow: 0 0 0 rgba(37, 137, 255, 0);
+  }
+  50% {
+    border-color: rgba(114, 180, 255, 0.6);
+    box-shadow: 0 0 16px rgba(37, 137, 255, 0.16);
+  }
+}
+@keyframes rieCodeShine {
+  to {
+    background-position: 200% center;
+  }
+}
 
 /* Favorites page */
 .favorites-page {
