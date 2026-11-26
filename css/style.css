@@ -148,6 +148,7 @@ button {
 .favorite-count {
   background: #ff5570;
 }
+
 .gold-btn {
   display: inline-flex;
   align-items: center;
@@ -2048,7 +2049,7 @@ button {
     right: auto;
     bottom: auto;
     left: auto;
-    margin-right: 112px;
+    margin-right: 122px;
     margin-left: 46px;
   }
   .category-info small {
