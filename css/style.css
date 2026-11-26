@@ -1382,7 +1382,22 @@ button {
     font-size: 12px;
   }
   .favorites-toolbar {
+    align-items: stretch;
+    flex-direction: column;
+    gap: 10px;
     padding: 12px;
+  }
+  .favorites-toolbar .outline-btn,
+  .favorites-summary {
+    width: 100%;
+  }
+  .favorites-summary {
+    justify-content: center;
+    min-width: 0;
+    padding: 9px 10px;
+    font-size: 12px;
+    text-align: center;
+    white-space: normal;
   }
 }
 
