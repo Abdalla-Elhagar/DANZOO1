@@ -57,13 +57,30 @@ function openProductDetails(productId) {
     { name: "كحلي", value: "#172b4d" },
   ];
 
+  document.getElementById("selectedSizeText").textContent = "اختر المقاس";
+  document.getElementById("selectedColorText").textContent = "اختر اللون";
   renderModalImages(images);
   renderModalSizes(product.sizes || defaultSizes);
   renderModalColors(product.colors || defaultColors);
-
-  document.getElementById("selectedSizeText").textContent = "اختر المقاس";
-  document.getElementById("selectedColorText").textContent = "اختر اللون";
+  updateModalAddToCartButton();
   productDetailsModal.show();
+}
+
+function updateModalAddToCartButton() {
+  const button = document.getElementById("modalAddToCart");
+  const cartKey =
+    currentModalProduct && selectedProductSize && selectedProductColor
+      ? `${currentModalProduct.id}|${selectedProductSize}|${selectedProductColor}`
+      : "";
+  const isInCart = Boolean(cartKey && getCartItem(cartKey));
+
+  button.classList.toggle("in-cart", isInCart);
+  button.dataset.cartAction = isInCart ? "remove" : "add";
+  button.setAttribute(
+    "aria-label",
+    isInCart ? "إزالة المنتج من السلة" : "إضافة المنتج إلى السلة",
+  );
+  button.innerHTML = `<i class="fa-solid ${isInCart ? "fa-trash-can" : "fa-bag-shopping"}" aria-hidden="true"></i> ${isInCart ? "إزالة من السلة" : "إضافة إلى السلة"}`;
 }
 
 function renderModalImages(images) {
@@ -114,6 +131,7 @@ function renderModalSizes(sizes) {
       button.classList.add("active");
       document.getElementById("selectedSizeText").textContent =
         `المقاس: ${label}`;
+      updateModalAddToCartButton();
     });
 
     container.appendChild(button);
@@ -145,7 +163,15 @@ function renderModalColors(colors) {
       button.classList.add("active");
       document.getElementById("selectedColorText").textContent =
         `اللون: ${name}`;
+      updateModalAddToCartButton();
     });
+
+    if (colors.length === 1) {
+      selectedProductColor = String(name);
+      button.classList.add("active");
+      document.getElementById("selectedColorText").textContent =
+        `اللون: ${name}`;
+    }
 
     container.appendChild(button);
   });
@@ -170,6 +196,15 @@ document
 
 document.getElementById("modalAddToCart").addEventListener("click", () => {
   if (!currentModalProduct) return;
+
+  const cartKey =
+    selectedProductSize && selectedProductColor
+      ? `${currentModalProduct.id}|${selectedProductSize}|${selectedProductColor}`
+      : "";
+  if (cartKey && getCartItem(cartKey)) {
+    removeCartItem(cartKey);
+    return;
+  }
 
   if (!selectedProductSize) {
     showToast("من فضلك اختر المقاس أولاً");
@@ -198,8 +233,6 @@ document.getElementById("modalAddToCart").addEventListener("click", () => {
     color: selectedProductColor,
     quantity,
   });
-
-  productDetailsModal.hide();
 });
 
 /* عدّل رقم واتساب المتجر إلى الرقم الحقيقي */
@@ -847,6 +880,7 @@ function removeProductFromCart(productId) {
 
 function renderCart() {
   updateCartCount();
+  updateModalAddToCartButton();
   const empty = cart.length === 0;
   cartEmpty.style.display = empty ? "block" : "none";
   cartContent.style.display = empty ? "none" : "block";
