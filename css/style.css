@@ -990,6 +990,10 @@ button {
 .promo-section {
   padding: 65px 0;
 }
+#about {
+  background: linear-gradient(135deg, #102035 0%, #142840 52%, #0e1d30 100%);
+  border-block: 1px solid #72b4ff24;
+}
 .promo-box {
   background:
     radial-gradient(circle at 20% 50%, #2589ff25, transparent 35%),

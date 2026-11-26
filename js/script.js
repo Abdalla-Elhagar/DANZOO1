@@ -210,15 +210,27 @@ const cart = [];
 const favorites = new Set();
 let activeCategory = "all";
 let searchTerm = "";
-let productsPerPage = 8;
+const PRODUCTS_PER_PAGE_STORAGE_KEY = "productsPerPage";
+const productsPerPageSelect = document.getElementById("productsPerPage");
+const availableProductPageSizes = Array.from(
+  productsPerPageSelect.options,
+  (option) => Number(option.value),
+);
+const savedProductPageSize = Number(
+  localStorage.getItem(PRODUCTS_PER_PAGE_STORAGE_KEY),
+);
+let productsPerPage = availableProductPageSizes.includes(savedProductPageSize)
+  ? savedProductPageSize
+  : Number(productsPerPageSelect.value) || availableProductPageSizes[0];
+productsPerPageSelect.value = String(productsPerPage);
 let currentProductPage = 1;
 const shopSections = [
   "home",
   "categories",
   "products",
-  "offers",
+  // "offers",
   "about",
-  "contact",
+  "footer",
 ];
 
 document.getElementById("currentYear").textContent = new Date().getFullYear();
@@ -1097,15 +1109,15 @@ document.getElementById("checkoutForm").addEventListener("submit", (event) => {
 });
 
 /* Newsletter */
-document
-  .getElementById("newsletterForm")
-  .addEventListener("submit", (event) => {
-    event.preventDefault();
-    showToast(
-      "شكراً لاهتمامك بـ DANZO! اربط النموذج بخدمة بريد لاستقبال الاشتراكات.",
-    );
-    event.target.reset();
-  });
+// document
+//   .getElementById("newsletterForm")
+//   .addEventListener("submit", (event) => {
+//     event.preventDefault();
+//     showToast(
+//       "شكراً لاهتمامك بـ DANZO! اربط النموذج بخدمة بريد لاستقبال الاشتراكات.",
+//     );
+//     event.target.reset();
+//   });
 
 /* واتساب الفوتر */
 function openStoreWhatsApp() {
@@ -1172,13 +1184,12 @@ function updateActiveNav() {
 }
 window.addEventListener("scroll", updateActiveNav, { passive: true });
 window.addEventListener("resize", updateActiveNav);
-document
-  .getElementById("productsPerPage")
-  .addEventListener("change", (event) => {
-    productsPerPage = Number(event.target.value);
-    currentProductPage = 1;
-    renderProducts();
-  });
+productsPerPageSelect.addEventListener("change", (event) => {
+  productsPerPage = Number(event.target.value);
+  localStorage.setItem(PRODUCTS_PER_PAGE_STORAGE_KEY, String(productsPerPage));
+  currentProductPage = 1;
+  renderProducts();
+});
 
 /* تشغيل أولي */
 renderCategories();
